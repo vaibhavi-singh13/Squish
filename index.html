@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SQUISH! — Bounce Back Adventure</title>
+
+
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+<body>
+    <canvas id="game" aria-label="SQUISH game"></canvas>
+
+    <section id="menu" class="screen active">
+
+
+        <div class="hero-copy">
+            <h1><span class="t1">SQUISH</span><span class="t2">!</span></h1>
+            <div class="ribbon">FALL DOWN. BOUNCE BACK.</div>
+
+
+            <p class="card blurb">Meet Pip, the tiniest slime with the biggest bounce. Squish, stretch and spring through five wonderfully weird worlds!</p>
+            <button id="playBtn" class="btn big">LET'S PLAY</button>
+
+
+        </div>
+    </section>
+
+    <section id="story" class="screen">
+        <button class="btn small white top-left" data-back aria-label="Go back">&larr; BACK</button>
+
+
+        <div class="card story-card">
+
+
+            <div class="ribbon pink">THE STORY SO FAR</div>
+            <h2>THE CRUSHER<br><span>IS COMING!</span></h2>
+
+
+
+            <p>The peaceful Slime Kingdom was full of giggles, goo and glorious bouncing — until the Crusher stole the Great Bounce Crystal and scattered its energy across five strange worlds.</p>
+            <p>Pip is small. Pip is squishy. But every time Pip hits the ground, Pip can bounce back even higher. Collect the lost crystals, master your squishy powers and face the Crusher!</p>
+            <button id="storyGoBtn" class="btn big">I'M READY!</button>
+
+        </div>
+    </section>
+
+    <section id="levels" class="screen">
+
+
+
+        <div class="levels-wrap">
+            <div class="levels-head">
+
+
+                <button class="btn small white" data-back aria-label="Go back">&larr; BACK</button>
+                
+                <h2 class="title-text">CHOOSE A WORLD</h2>
+                <div class="pill gem-pill">
+
+
+
+                    <svg viewBox="0 0 24 24" class="ico"><path d="M12 2 21 12 12 22 3 12Z" fill="#ffd23f" stroke="#000" stroke-width="2.4" stroke-linejoin="round"/></svg>
+                    <b id="crystalTotal">0</b>
+                </div>
+            </div>
+
+
+            <div id="worldGrid" class="world-grid"></div>
+            
+        </div>
+    </section>
+
+    <section id="gameScreen" class="screen game-screen">
+        <div class="game-hud">
+            <div class="hud-left">
+
+
+                <button class="btn small white" data-back aria-label="Back to worlds">&larr; BACK</button>
+
+
+                <button id="pauseBtn" class="btn small white" aria-label="Pause">PAUSE</button>
+
+            </div>
+            <div class="hud-center">
+                <div class="pill" id="hudWorld">SLIME FOREST</div>
+                <div class="hud-progress"><i id="hudProgress"></i></div>
+
+
+
+                <div id="bossBar" class="boss-bar">
+                    <span>THE CRUSHER</span>
+                    <div class="bar"><b id="bossFill"></b></div>
+                </div>
+            </div>
+            <div class="hud-right">
+                <div class="pill">
+
+                    <svg viewBox="0 0 24 24" class="ico"><path d="M12 2 21 12 12 22 3 12Z" fill="#ffd23f" stroke="#000" stroke-width="2.4" stroke-linejoin="round"/></svg>
+                    <b id="hudCrystals">0</b>
+                </div>
+
+
+                <div class="pill">
+                    <svg viewBox="0 0 24 24" class="ico"><path d="M12 21C5 15.5 2.5 12 2.5 8.4A4.9 4.9 0 0 1 12 6.4a4.9 4.9 0 0 1 9.5 2C21.5 12 19 15.5 12 21Z" fill="#ff4d6d" stroke="#000" stroke-width="2.4" stroke-linejoin="round"/></svg>
+                    <b id="hudLives">3</b>
+                </div>
+            </div>
+        </div>
+
+        <div id="toast" class="toast"></div>
+
+
+        <div class="touch-row">
+
+
+            <div class="tgroup">
+                <button class="touch-control" data-key="ArrowLeft" aria-label="Move left"><svg viewBox="0 0 24 24"><path d="M17 3 6 12l11 9Z" fill="#000"/></svg></button>
+                <button class="touch-control" data-key="ArrowRight" aria-label="Move right"><svg viewBox="0 0 24 24"><path d="M7 3l11 9-11 9Z" fill="#000"/></svg></button>
+            </div>
+            <div class="tgroup">
+                <button class="touch-control wide" data-key="ArrowDown">SQUISH</button>
+
+                <button class="touch-control wide pink" data-key="Space">JUMP</button>
+            </div>
+        </div>
+
+        <div id="pauseOverlay" class="overlay">
+            <div class="card overlay-card">
+                <div class="ribbon">TAKE A BREATHER</div>
+
+                <h2>PAUSED</h2>
+                <button id="resumeBtn" class="btn big">KEEP BOUNCING</button>
+
+                <button id="restartBtn" class="btn white">RESTART LEVEL</button>
+
+                <button id="pauseWorldsBtn" class="btn white">BACK TO WORLDS</button>
+            </div>
+        </div>
+
+
+        <div id="winOverlay" class="overlay">
+            <div class="card overlay-card">
+                <div class="ribbon mint">LEVEL COMPLETE!</div>
+                <h2 id="winTitle">NICE BOUNCE!</h2>
+
+                <p id="winText">You found the way forward.</p>
+                <div class="win-crystals" id="winCrystals">0</div>
+
+                <button id="nextBtn" class="btn big">NEXT WORLD</button>
+
+                <button id="worldsBtn" class="btn white">BACK TO WORLDS</button>
+            </div>
+        </div>
+
+
+
+        <div id="gameOverOverlay" class="overlay">
+            <div class="card overlay-card">
+                <div class="ribbon pink">SPLAT!</div>
+
+                <h2>ONE MORE TRY?</h2>
+
+                <p>Pip can always bounce back.</p>
+                <button id="retryBtn" class="btn big">TRY AGAIN</button>
+
+                <button id="gameOverWorldsBtn" class="btn white">BACK TO WORLDS</button>
+
+            </div>
+        </div>
+
+    </section>
+
+    <script src="game2d.js"></script>
+</body>
+</html>
