@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SQUISH 3D! — Bounce Back Adventure</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="game-shell">
+  <header class="topbar">
+    <div class="brand">SQUISH<span>!</span> <em>3D</em></div>
+    <div class="tagline">BOUNCE BACK ADVENTURE</div>
+    <button id="soundBtn" class="small-btn" aria-label="Toggle sound">♫ SOUND ON</button>
+  </header>
+
+  <main>
+    <section id="menu" class="screen active">
+      <div class="hero-copy">
+        <div class="eyebrow">A BOUNCY LITTLE ADVENTURE · NOW IN 3D</div>
+        <h1>FALL DOWN.<br><span>BOUNCE BACK.</span></h1>
+        <p>Meet Pip, the tiniest slime with the biggest bounce. Squish, stretch and spring through five wonderfully weird worlds in full 3D!</p>
+        <button id="playBtn" class="primary-btn">LET'S PLAY <b>▶</b></button>
+        <div class="menu-note">A keyboard 3D platform adventure · No downloads needed</div>
+      </div>
+      <div class="hero-art">
+        <div class="sun"></div><div class="cloud cloud-a"></div><div class="cloud cloud-b"></div>
+        <div class="hill hill-back"></div><div class="hill hill-front"></div>
+        <div class="hero-slime"><i></i><i></i><b></b></div>
+        <div class="spark s1">✦</div><div class="spark s2">✧</div><div class="spark s3">✦</div>
+      </div>
+    </section>
+
+    <section id="levels" class="screen">
+      <div class="section-head">
+        <button class="back-btn" data-screen="menu">← BACK</button>
+        <div><div class="eyebrow">CHOOSE YOUR ADVENTURE</div><h2>WORLDS</h2></div>
+        <div class="progress-pill">CRYSTALS <b id="crystalTotal">0</b> ✦</div>
+      </div>
+      <div id="worldGrid" class="world-grid"></div>
+    </section>
+
+    <section id="gameScreen" class="screen game-screen">
+      <div class="game-hud">
+        <button id="exitBtn" class="small-btn">Ⅱ MENU</button>
+        <div class="hud-world" id="hudWorld">SLIME FOREST</div>
+        <div class="hud-stat">✦ <b id="hudCrystals">0</b></div>
+        <div class="hud-stat">♥ <b id="hudLives">3</b></div>
+      </div>
+      <div class="canvas-wrap">
+        <canvas id="game" aria-label="SQUISH 3D game"></canvas>
+        <div class="hud-progress"><i id="hudProgress"></i></div>
+        <div id="bossBar" class="boss-bar"><span>THE CRUSHER</span><i><b id="bossFill"></b></i></div>
+        <div id="toast" class="toast"></div>
+        <div id="pauseOverlay" class="overlay">
+          <div class="overlay-card"><div class="eyebrow">TAKE A BREATHER</div><h2>PAUSED</h2><button id="resumeBtn" class="primary-btn">KEEP BOUNCING</button><button id="restartBtn" class="secondary-btn">RESTART LEVEL</button></div>
+        </div>
+        <div id="winOverlay" class="overlay">
+          <div class="overlay-card"><div class="eyebrow">LEVEL COMPLETE!</div><h2 id="winTitle">NICE BOUNCE!</h2><p id="winText">You found the way forward.</p><div class="win-crystals" id="winCrystals">✦ 0</div><button id="nextBtn" class="primary-btn">NEXT LEVEL →</button><button id="worldsBtn" class="secondary-btn">BACK TO WORLDS</button></div>
+        </div>
+        <div id="gameOverOverlay" class="overlay">
+          <div class="overlay-card"><div class="eyebrow">SPLAT!</div><h2>ONE MORE TRY?</h2><p>Pip can always bounce back.</p><button id="retryBtn" class="primary-btn">TRY AGAIN</button><button id="gameOverWorldsBtn" class="secondary-btn">WORLDS</button></div>
+        </div>
+      </div>
+      <div class="controls-hint">
+        <span><kbd>←</kbd><kbd>→</kbd> MOVE</span>
+        <span><kbd>SPACE</kbd> JUMP</span>
+        <span><kbd>↓</kbd> SQUISH</span>
+        <span><kbd>P</kbd> PAUSE</span>
+        <span class="mobile-hint">Touch controls appear on small screens</span>
+        <div class="touch-row">
+          <button class="touch-control" data-key="ArrowLeft">◀</button>
+          <button class="touch-control" data-key="ArrowRight">▶</button>
+          <button class="touch-control" data-key="ArrowDown">SQUISH</button>
+          <button class="touch-control" data-key="Space">JUMP</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="story" class="screen">
+      <div class="story-card">
+        <div class="eyebrow">THE STORY SO FAR</div><h2>THE CRUSHER<br><span>IS COMING!</span></h2>
+        <p>The peaceful Slime Kingdom was full of giggles, goo and glorious bouncing — until the Crusher stole the Great Bounce Crystal and scattered its energy across five strange worlds.</p>
+        <p>Pip is small. Pip is squishy. But every time Pip hits the ground, Pip can bounce back even higher. Collect the lost stars, master your squishy powers and face the Crusher!</p>
+        <button id="storyGoBtn" class="primary-btn">I'M READY!</button>
+      </div>
+    </section>
+  </main>
+  <footer>MADE FOR BIG BOUNCES &amp; SECOND CHANCES <span>✦</span></footer>
+</div>
+<script src="vendor/three.min.js"></script>
+<script src="game3d.js"></script>
+</body>
+</html>
